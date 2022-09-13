@@ -13,7 +13,8 @@
   "scripts": {
     "start": "tsdx watch",
     "build": "tsdx build",
-    "test": "tsdx test --passWithNoTests",
+    "test": "tsdx test --env=jsdom --watch --runInBand",
+    "test:coverage": "tsdx test --env=jsdom --silent --verbose --coverage",
     "lint": "tsdx lint",
     "prepare": "tsdx build",
     "size": "size-limit",
@@ -63,5 +64,9 @@
     "tsdx": "^0.14.1",
     "tslib": "^2.4.0",
     "typescript": "^4.8.3"
+  },
+  "dependencies": {
+    "@testing-library/react": "^13.4.0",
+    "@types/jest": "^29.0.1"
   }
 }
