@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 export type GEOLOCATION_STATUS =
   | 'IDLE'
@@ -33,6 +33,23 @@ export interface useGelocationProps {
 export const useGeolocation = ({ success, error }: useGelocationProps) => {
   const [STATUS, setStatus] = useState<GEOLOCATION_STATUS>('IDLE');
 
+  const successCallback = useCallback(
+    (position: GeoPosition): void => {
+      setStatus('SUCCESS');
+      success(position);
+    },
+    [success]
+  );
+
+  const errorCallback = useCallback(
+    (err: GeolocationPositionError): void => {
+      setStatus('ERROR');
+
+      if (error) error(err);
+    },
+    [error]
+  );
+
   useEffect(() => {
     if (!navigator.geolocation) {
       return setStatus('UNSUPPORTED');
@@ -40,18 +57,7 @@ export const useGeolocation = ({ success, error }: useGelocationProps) => {
 
     setStatus('PENDING');
     navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
-  }, []);
-
-  const successCallback = (position: GeoPosition): void => {
-    setStatus('SUCCESS');
-    success(position);
-  };
-
-  const errorCallback = (err: GeolocationPositionError): void => {
-    setStatus('ERROR');
-
-    if (error) error(err);
-  };
+  }, [successCallback, errorCallback]);
 
   return {
     STATUS,
