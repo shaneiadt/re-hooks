@@ -13,7 +13,7 @@
   "scripts": {
     "start": "tsdx watch",
     "build": "tsdx build",
-    "test": "tsdx test --env=jsdom --watch --runInBand",
+    "test": "tsdx test --env=jsdom --watch",
     "test:coverage": "tsdx test --env=jsdom --silent --verbose --coverage",
     "lint": "tsdx lint",
     "prepare": "tsdx build",
