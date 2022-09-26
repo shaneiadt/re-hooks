@@ -12,13 +12,14 @@
   },
   "scripts": {
     "start": "tsdx watch",
-    "build": "tsdx build",
+    "build": "tsdx build && yarn make-badge",
     "test": "tsdx test --env=jsdom --watch",
     "test:coverage": "tsdx test --env=jsdom --silent --verbose --coverage",
     "lint": "tsdx lint",
     "prepare": "tsdx build",
     "size": "size-limit",
-    "analyze": "size-limit --why"
+    "analyze": "size-limit --why",
+    "make-badge": "$(yarn bin)/coverage-badges"
   },
   "peerDependencies": {
     "react": ">=16"
@@ -53,20 +54,36 @@
       "limit": "10 KB"
     }
   ],
-  "keywords": ["react","hooks"],
+  "keywords": [
+    "react",
+    "hooks"
+  ],
   "devDependencies": {
     "@size-limit/preset-small-lib": "^8.1.0",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^14.4.3",
+    "@types/jest": "^29.0.1",
     "@types/react": "^18.0.19",
     "@types/react-dom": "^18.0.6",
+    "coverage-badges": "^1.0.7",
     "husky": "^8.0.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "size-limit": "^8.1.0",
     "tsdx": "^0.14.1",
     "tslib": "^2.4.0",
-    "typescript": "^4.8.3",
-    "@testing-library/react": "^13.4.0",
-    "@testing-library/user-event": "^14.4.3",
-    "@types/jest": "^29.0.1"
+    "typescript": "^4.8.3"
+  },
+  "jest": {
+    "coverageReporters": [
+      "text",
+      "lcov",
+      "json-summary"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "lines": 80
+      }
+    }
   }
 }
