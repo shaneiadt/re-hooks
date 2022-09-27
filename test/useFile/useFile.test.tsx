@@ -91,5 +91,28 @@ describe('useFile', () => {
         expect(addEventListener).toHaveBeenCalledTimes(1);
       });
     });
+
+    it('should return undefined', () => {
+      const { addEventListener } = mockFilerReader();
+      render(<HookTesterWithoutCallback />);
+
+      const file = new File([new ArrayBuffer(1)], 'img.jpg');
+
+      const useRefMock = jest
+        .spyOn(React, 'useRef')
+        .mockReturnValueOnce({ current: undefined });
+
+      const readFileMock = jest
+        .spyOn(ReadFileAsText, 'default')
+        .mockResolvedValue('content');
+
+      user.upload(current, file);
+
+      waitFor(() => {
+        expect(useRefMock).toHaveBeenCalled();
+        expect(readFileMock).not.toHaveBeenCalled();
+        expect(addEventListener).not.toHaveBeenCalled();
+      });
+    });
   });
 });
