@@ -45,9 +45,11 @@ export const useNotification = () => {
 
     const { title, body, icon } = notificationData;
 
-    const notification = new Notification(title, { body, icon });
-
-    notification.onerror = () => setStatus(NOTIFICATION_STATUS.ERROR);
+    try {
+      new Notification(title, { body, icon });
+    } catch (e) {
+      setStatus(NOTIFICATION_STATUS.ERROR);
+    }
   }, [notificationData]);
 
   const notify = (data: NotificationData) => setNotificationData(data);
