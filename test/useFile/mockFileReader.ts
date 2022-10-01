@@ -1,5 +1,6 @@
 export const mockFilerReader = () => {
   const addEventListener = jest.fn();
+  const readAsText = jest.fn();
 
   class FileReaderMock {
     DONE = FileReader.DONE;
@@ -32,5 +33,6 @@ export const mockFilerReader = () => {
 
   return {
     addEventListener,
+    readAsText,
   };
 };

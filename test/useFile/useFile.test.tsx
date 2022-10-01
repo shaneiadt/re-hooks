@@ -1,118 +1,82 @@
-import React, { useRef } from 'react';
 import user from '@testing-library/user-event';
-import { render, waitFor } from '@testing-library/react';
+import { fireEvent, renderHook, waitFor } from '@testing-library/react';
 import * as ReadFileAsText from './readAsText';
 
 import { useFile } from '../../src';
-
-import { mockFilerReader } from './mockFileReader';
-
-const current = document.createElement('input');
-current.type = 'file';
-
-jest.mock('react', () => {
-  const originReact = jest.requireActual('react');
-  const mUseRef = () => current;
-  return {
-    ...originReact,
-    useRef: mUseRef,
-  };
-});
-
-interface Props {
-  callback: (fileReader: FileReader) => void;
-}
-
-const HookTesterWithCallback = ({ callback }: Props) => {
-  const ref = useRef(null);
-  useFile(ref, callback);
-
-  return <></>;
-};
-
-const HookTesterWithoutCallback = () => {
-  const [output, setOutput] = React.useState('');
-  const ref = useRef(null);
-  const { fileReader } = useFile(ref);
-
-  fileReader.addEventListener('load', () => {
-    setOutput('BOOM');
-  });
-
-  return (
-    <>
-      <div className="output">{JSON.stringify(output)}</div>
-    </>
-  );
-};
+import { act } from 'react-dom/test-utils';
 
 describe('useFile', () => {
-  beforeEach(() => {
-    jest.clearAllMocks();
+  it('should add an on change event listener', () => {
+    const addEventListener = jest.fn();
+    const current = document.createElement('input');
+    current.type = 'file';
+    current.addEventListener = addEventListener;
+    const ref = { current };
+    renderHook(() => useFile(ref));
+
+    expect(addEventListener).toHaveBeenCalled();
   });
 
-  describe('with callback', () => {
-    it('should invoke the callback fn when a file is uploaded', () => {
-      const callback = jest.fn();
-      render(<HookTesterWithCallback callback={callback} />);
+  it('should read a file', () => {
+    const current = document.createElement('input');
+    current.type = 'file';
+    const ref = { current };
+    renderHook(() => useFile(ref));
 
-      const file = new File([new ArrayBuffer(1)], 'file.jpg');
+    const file = new File([new ArrayBuffer(1)], 'file.jpg');
 
-      const readFileMock = jest
-        .spyOn(ReadFileAsText, 'default')
-        .mockResolvedValue('image content');
+    const readFileMock = jest
+      .spyOn(ReadFileAsText, 'default')
+      .mockResolvedValue('image content');
 
-      user.upload(current, file);
+    user.upload(current, file);
 
-      waitFor(() => {
-        expect(readFileMock).toHaveBeenCalledTimes(1);
-        expect(readFileMock).toHaveBeenCalledWith(file);
-        expect(callback).toHaveBeenCalledTimes(1);
-      });
+    waitFor(() => {
+      expect(readFileMock).toHaveBeenCalledTimes(1);
+      expect(readFileMock).toHaveBeenCalledWith(file);
     });
   });
 
-  describe('without callback', () => {
-    it('should invoke the callback fn when a file is uploaded', () => {
-      const { addEventListener } = mockFilerReader();
-      render(<HookTesterWithoutCallback />);
+  it('should return an instanceof FileReader', async () => {
+    const current = document.createElement('input');
+    current.type = 'file';
+    const ref = { current };
+    const callback = jest.fn();
 
-      const file = new File([new ArrayBuffer(1)], 'img.jpg');
+    const { result } = renderHook(() => useFile(ref, callback));
 
-      const readFileMock = jest
-        .spyOn(ReadFileAsText, 'default')
-        .mockResolvedValue('content');
+    const file = new File([new ArrayBuffer(1)], 'file.jpg');
 
-      user.upload(current, file);
-
-      waitFor(() => {
-        expect(readFileMock).toHaveBeenCalledTimes(1);
-        expect(readFileMock).toHaveBeenCalledWith(file);
-        expect(addEventListener).toHaveBeenCalledTimes(1);
+    act(() => {
+      fireEvent.change(current, {
+        target: { files: [file] },
       });
     });
 
-    it('should return undefined', () => {
-      const { addEventListener } = mockFilerReader();
-      render(<HookTesterWithoutCallback />);
+    await waitFor(() => {
+      expect(result.current.fileReader).toBeInstanceOf(FileReader);
+    });
+  });
 
-      const file = new File([new ArrayBuffer(1)], 'img.jpg');
+  it('should invoke file reader on change', async () => {
+    const mockCurrent = document.createElement('input');
+    mockCurrent.type = 'file';
+    const mockAddEventListener = jest.fn();
+    mockCurrent.addEventListener = mockAddEventListener;
+    const ref = { current: mockCurrent };
 
-      const useRefMock = jest
-        .spyOn(React, 'useRef')
-        .mockReturnValueOnce({ current: undefined });
+    renderHook(() => useFile(ref));
 
-      const readFileMock = jest
-        .spyOn(ReadFileAsText, 'default')
-        .mockResolvedValue('content');
+    const file = new File([new ArrayBuffer(1)], 'file.jpg');
 
-      user.upload(current, file);
-
-      waitFor(() => {
-        expect(useRefMock).toHaveBeenCalled();
-        expect(readFileMock).not.toHaveBeenCalled();
-        expect(addEventListener).not.toHaveBeenCalled();
+    act(() => {
+      fireEvent.change(mockCurrent, {
+        target: { files: [file] },
       });
+    });
+
+    await waitFor(() => {
+      expect(mockAddEventListener).toHaveBeenCalledTimes(1);
     });
   });
 });
