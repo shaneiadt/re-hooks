@@ -5,7 +5,7 @@ export const usePipe = <T,>(fns: ((arg: T | null) => T | null)[]) => {
 
   useEffect(() => {
     setResult(fns.reduce((cur: T | null, fn) => fn(cur), null));
-  }, [fns.length]);
+  }, [fns]);
 
   return {
     result,

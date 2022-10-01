@@ -1,4 +1,4 @@
-import { RefObject, useEffect } from 'react';
+import { RefObject, useCallback, useEffect } from 'react';
 
 export const useFile = (
   ref: RefObject<HTMLInputElement>,
@@ -6,13 +6,7 @@ export const useFile = (
 ) => {
   const fileReader = new FileReader();
 
-  useEffect(() => {
-    if (!ref) return;
-
-    ref.current?.addEventListener('change', onChange);
-  }, []);
-
-  const onChange = () => {
+  const onChange = useCallback(() => {
     if (!ref.current?.files) return;
 
     const file = ref.current?.files[0];
@@ -24,7 +18,13 @@ export const useFile = (
 
       fileReader.readAsText(file);
     }
-  };
+  }, [callback, fileReader, ref]);
+
+  useEffect(() => {
+    if (!ref) return;
+
+    ref.current?.addEventListener('change', onChange);
+  }, [ref, onChange]);
 
   return {
     fileReader,

@@ -5,7 +5,7 @@ export const useCompose = <T,>(fns: ((arg: T | null) => T | null)[]) => {
 
   useEffect(() => {
     setResult(fns.reduceRight((cur: T | null, fn) => fn(cur), null));
-  }, [fns.length]);
+  }, [fns]);
 
   return {
     result,
