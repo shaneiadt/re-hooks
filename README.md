@@ -10,6 +10,8 @@ Useful React hooks :thumbsup:
 - [useFile](https://github.com/shaneiadt/re-hooks/blob/master/src/useFile/index.tsx)
 - [useClipboard](https://github.com/shaneiadt/re-hooks/blob/master/src/useClipboard/index.tsx)
 - [useRandomNumber](https://github.com/shaneiadt/re-hooks/blob/master/src/useRandomNumber/index.tsx)
+- [usePipe](https://github.com/shaneiadt/re-hooks/blob/master/src/usePipe/index.tsx)
+- [useCompose](https://github.com/shaneiadt/re-hooks/blob/master/src/useCompose/index.tsx)
 
 ## Usage
 
