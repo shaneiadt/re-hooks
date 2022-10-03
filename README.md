@@ -12,6 +12,7 @@ Useful React hooks :thumbsup:
 - [useRandomNumber](https://github.com/shaneiadt/re-hooks/blob/master/src/useRandomNumber/index.tsx)
 - [usePipe](https://github.com/shaneiadt/re-hooks/blob/master/src/usePipe/index.tsx)
 - [useCompose](https://github.com/shaneiadt/re-hooks/blob/master/src/useCompose/index.tsx)
+- [useEllipsis](https://github.com/shaneiadt/re-hooks/blob/master/src/useEllipsis/index.tsx)
 
 ## Usage
 

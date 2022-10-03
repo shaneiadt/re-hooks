@@ -6,3 +6,4 @@ export * from './useClipboard';
 export * from './useRandomNumber';
 export * from './usePipe';
 export * from './useCompose';
+export * from './useEllipsis';
