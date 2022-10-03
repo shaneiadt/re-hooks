@@ -75,9 +75,7 @@ export const useEllipsis = ({
   const ellipsisMiddle = (options: EllipsisOptions): string => {
     const { text, char, length, count } = options;
 
-    const middle = Array.from(Array(count))
-      .map(() => char)
-      .join('');
+    const middle = getEllipsisChars(count, char);
 
     const totalLength = Math.ceil(length - middle.length);
 
