@@ -13,6 +13,7 @@ Useful React hooks :thumbsup:
 - [usePipe](https://github.com/shaneiadt/re-hooks/blob/master/src/usePipe/index.tsx)
 - [useCompose](https://github.com/shaneiadt/re-hooks/blob/master/src/useCompose/index.tsx)
 - [useEllipsis](https://github.com/shaneiadt/re-hooks/blob/master/src/useEllipsis/index.tsx)
+- [useMeasurePerformance](https://github.com/shaneiadt/re-hooks/blob/master/src/useMeasurePerformance/index.tsx)
 
 ## Usage
 
