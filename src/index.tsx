@@ -8,3 +8,4 @@ export * from './usePipe';
 export * from './useCompose';
 export * from './useEllipsis';
 export * from './useMeasurePerformance';
+export * from './useSlugify';

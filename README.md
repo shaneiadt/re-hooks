@@ -2,7 +2,7 @@
 
 # Use-Re-Hooks
 
-Useful React hooks :thumbsup:
+Potentially "Useful React hooks"!
 
 - [useGeolocation](https://github.com/shaneiadt/re-hooks/blob/master/src/useGeolocation/index.tsx)
 - [useWebWorker](https://github.com/shaneiadt/re-hooks/blob/master/src/useWebWorker/index.tsx)
@@ -14,6 +14,7 @@ Useful React hooks :thumbsup:
 - [useCompose](https://github.com/shaneiadt/re-hooks/blob/master/src/useCompose/index.tsx)
 - [useEllipsis](https://github.com/shaneiadt/re-hooks/blob/master/src/useEllipsis/index.tsx)
 - [useMeasurePerformance](https://github.com/shaneiadt/re-hooks/blob/master/src/useMeasurePerformance/index.tsx)
+- [useSlugify](https://github.com/shaneiadt/re-hooks/blob/master/src/useSlugify/index.tsx)
 
 ## Usage
 
