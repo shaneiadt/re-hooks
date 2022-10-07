@@ -15,6 +15,7 @@ Potentially "Useful React hooks"!
 - [useEllipsis](https://github.com/shaneiadt/re-hooks/blob/master/src/useEllipsis/index.tsx)
 - [useMeasurePerformance](https://github.com/shaneiadt/re-hooks/blob/master/src/useMeasurePerformance/index.tsx)
 - [useSlugify](https://github.com/shaneiadt/re-hooks/blob/master/src/useSlugify/index.tsx)
+- [useCase](https://github.com/shaneiadt/re-hooks/blob/master/src/useCase/index.tsx)
 
 ## Usage
 
