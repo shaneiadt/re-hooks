@@ -16,6 +16,7 @@ Potentially "Useful React hooks"!
 - [useMeasurePerformance](https://github.com/shaneiadt/re-hooks/blob/master/src/useMeasurePerformance/index.tsx)
 - [useSlugify](https://github.com/shaneiadt/re-hooks/blob/master/src/useSlugify/index.tsx)
 - [useCase](https://github.com/shaneiadt/re-hooks/blob/master/src/useCase/index.tsx)
+- [useColor](https://github.com/shaneiadt/re-hooks/blob/master/src/useColor/index.tsx)
 
 ## Usage
 

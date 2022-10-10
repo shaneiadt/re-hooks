@@ -10,3 +10,4 @@ export * from './useEllipsis';
 export * from './useMeasurePerformance';
 export * from './useSlugify';
 export * from './useCase';
+export * from './useColor';
