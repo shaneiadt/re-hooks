@@ -20,4 +20,23 @@ Potentially "Useful React hooks"!
 
 ## Usage
 
-coming soon...
+### useGeolocation
+
+```javascript
+export const App = () => {
+  const error = (err: GeolocationPositionError) => {
+    console.error(err);
+  };
+
+  const [location, setlocation] = useState<GeoPosition>();
+
+  useGeolocation({ success: setlocation, error });
+
+  return (
+    <>
+      <p>Longitude: {location?.coords.longitude}</p>
+      <p>Latitude: {location?.coords.latitude}</p>
+    </>
+  );
+};
+```
