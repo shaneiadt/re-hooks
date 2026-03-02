@@ -1,5 +1,3 @@
-![JS coverage](./badges/code_coverage.svg)
-
 # Use-Re-Hooks
 
 Potentially "Useful React hooks"!

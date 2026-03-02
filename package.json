@@ -1,41 +1,23 @@
 {
-  "version": "1.2.2",
+  "name": "use-re-hooks",
+  "version": "2.0.0",
+  "description": "React custom hooks library",
   "license": "MIT",
-  "main": "dist/index.js",
-  "typings": "dist/index.d.ts",
-  "files": [
-    "dist",
-    "src"
-  ],
-  "engines": {
-    "node": ">=10"
-  },
-  "scripts": {
-    "start": "tsdx watch",
-    "build": "tsdx build && yarn make-badge",
-    "test": "tsdx test --env=jsdom --watch",
-    "test:coverage": "tsdx test --env=jsdom --silent --verbose --coverage",
-    "lint": "tsdx lint",
-    "prepare": "tsdx build",
-    "size": "size-limit",
-    "analyze": "size-limit --why",
-    "make-badge": "$(yarn bin)/coverage-badges"
-  },
-  "peerDependencies": {
-    "react": ">=16"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "tsdx lint"
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
     }
   },
-  "prettier": {
-    "printWidth": 80,
-    "semi": true,
-    "singleQuote": true,
-    "trailingComma": "es5"
-  },
-  "name": "use-re-hooks",
+  "files": [
+    "dist"
+  ],
+  "sideEffects": false,
   "author": "Shane O'Moore",
   "email": "shaneiadt@gmail.com",
   "url": "https://shaneiadt.github.io/",
@@ -43,47 +25,39 @@
     "type": "git",
     "url": "https://github.com/shaneiadt/re-hooks"
   },
-  "module": "dist/re-hooks.esm.js",
-  "size-limit": [
-    {
-      "path": "dist/re-hooks.cjs.production.min.js",
-      "limit": "10 KB"
-    },
-    {
-      "path": "dist/re-hooks.esm.js",
-      "limit": "10 KB"
-    }
-  ],
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "playground:dev": "bun run build && bun run --cwd playground dev",
+    "playground:build": "bun run build && bun run --cwd playground build",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "typecheck": "tsc --noEmit",
+    "release": "bun run release:dry-run && npm publish --access public",
+    "release:check": "bun run typecheck && bun run test && bun run build",
+    "release:dry-run": "bun run release:check && npm pack --dry-run",
+    "prepublishOnly": "bun run typecheck && bun run test && bun run build"
+  },
+  "peerDependencies": {
+    "react": "^18 || ^19"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.0",
+    "@types/react": "^19.1.13",
+    "@types/react-dom": "^19.1.9",
+    "jsdom": "26.1.0",
+    "react-dom": "^19.2.0",
+    "tsup": "^8.5.0",
+    "typescript": "^5.9.2",
+    "vitest": "3.2.4"
+  },
   "keywords": [
     "react",
     "hooks"
   ],
-  "devDependencies": {
-    "@size-limit/preset-small-lib": "^8.1.0",
-    "@testing-library/react": "^13.4.0",
-    "@testing-library/user-event": "^14.4.3",
-    "@types/jest": "^29.0.1",
-    "@types/react": "^18.0.19",
-    "@types/react-dom": "^18.0.6",
-    "coverage-badges": "^1.0.7",
-    "husky": "^8.0.1",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "size-limit": "^8.1.0",
-    "tsdx": "^0.14.1",
-    "tslib": "^2.4.0",
-    "typescript": "^4.8.3"
-  },
-  "jest": {
-    "coverageReporters": [
-      "text",
-      "lcov",
-      "json-summary"
-    ],
-    "coverageThreshold": {
-      "global": {
-        "lines": 80
-      }
-    }
+  "volta": {
+    "node": "24.14.0",
+    "bun": "1.3.10"
   }
 }
