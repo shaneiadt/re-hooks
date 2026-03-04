@@ -23,7 +23,7 @@
   "url": "https://shaneiadt.github.io/",
   "repository": {
     "type": "git",
-    "url": "https://github.com/shaneiadt/re-hooks"
+    "url": "git+https://github.com/shaneiadt/re-hooks.git"
   },
   "scripts": {
     "build": "tsup",
