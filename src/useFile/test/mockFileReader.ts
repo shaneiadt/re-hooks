@@ -28,7 +28,7 @@ export const mockFilerReader = () => {
     removeEventListener = vi.fn();
   }
 
-  Object.defineProperty(global, "FileReader", {
+  Object.defineProperty(globalThis, "FileReader", {
     configurable: true,
     value: FileReaderMock,
   });
