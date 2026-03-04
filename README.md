@@ -2,39 +2,24 @@
 
 Potentially "Useful React hooks"!
 
-- [useGeolocation](https://github.com/shaneiadt/re-hooks/blob/master/src/useGeolocation/index.tsx)
-- [useWebWorker](https://github.com/shaneiadt/re-hooks/blob/master/src/useWebWorker/index.tsx)
-- [useNotification](https://github.com/shaneiadt/re-hooks/blob/master/src/useNotification/index.tsx)
-- [useFile](https://github.com/shaneiadt/re-hooks/blob/master/src/useFile/index.tsx)
-- [useClipboard](https://github.com/shaneiadt/re-hooks/blob/master/src/useClipboard/index.tsx)
-- [useRandomNumber](https://github.com/shaneiadt/re-hooks/blob/master/src/useRandomNumber/index.tsx)
-- [usePipe](https://github.com/shaneiadt/re-hooks/blob/master/src/usePipe/index.tsx)
-- [useCompose](https://github.com/shaneiadt/re-hooks/blob/master/src/useCompose/index.tsx)
-- [useEllipsis](https://github.com/shaneiadt/re-hooks/blob/master/src/useEllipsis/index.tsx)
-- [useMeasurePerformance](https://github.com/shaneiadt/re-hooks/blob/master/src/useMeasurePerformance/index.tsx)
-- [useSlugify](https://github.com/shaneiadt/re-hooks/blob/master/src/useSlugify/index.tsx)
-- [useCase](https://github.com/shaneiadt/re-hooks/blob/master/src/useCase/index.tsx)
-- [useColor](https://github.com/shaneiadt/re-hooks/blob/master/src/useColor/index.tsx)
+Playground demos:
 
-## Usage
+- [useCase](./playground/src/hooks/useCase.demo.tsx)
+- [useClipboard](./playground/src/hooks/useClipboard.demo.tsx)
+- [useColor](./playground/src/hooks/useColor.demo.tsx)
+- [useCompose](./playground/src/hooks/useCompose.demo.tsx)
+- [useDebounce](./playground/src/hooks/useDebounce.demo.tsx)
+- [useEllipsis](./playground/src/hooks/useEllipsis.demo.tsx)
+- [useFile](./playground/src/hooks/useFile.demo.tsx)
+- [useGeolocation](./playground/src/hooks/useGeolocation.demo.tsx)
+- [useIsVisible](./playground/src/hooks/useIsVisible.demo.tsx)
+- [useMeasurePerformance](./playground/src/hooks/useMeasurePerformance.demo.tsx)
+- [useNotification](./playground/src/hooks/useNotification.demo.tsx)
+- [usePipe](./playground/src/hooks/usePipe.demo.tsx)
+- [useRandomNumber](./playground/src/hooks/useRandomNumber.demo.tsx)
+- [useSlugify](./playground/src/hooks/useSlugify.demo.tsx)
+- [useWebWorker](./playground/src/hooks/useWebWorker.demo.tsx)
 
-### useGeolocation
+## Release
 
-```javascript
-export const App = () => {
-  const error = (err: GeolocationPositionError) => {
-    console.error(err);
-  };
-
-  const [location, setlocation] = useState<GeoPosition>();
-
-  useGeolocation({ success: setlocation, error });
-
-  return (
-    <>
-      <p>Longitude: {location?.coords.longitude}</p>
-      <p>Latitude: {location?.coords.latitude}</p>
-    </>
-  );
-};
-```
+Releases are automated with GitHub Actions on merge to `master`.
