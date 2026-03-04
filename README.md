@@ -1,5 +1,11 @@
 # Use-Re-Hooks
 
+![CI](https://github.com/shaneiadt/re-hooks/actions/workflows/ci.yml/badge.svg)
+![Publish](https://github.com/shaneiadt/re-hooks/actions/workflows/publish.yml/badge.svg)
+![Coverage](https://codecov.io/gh/shaneiadt/re-hooks/branch/master/graph/badge.svg)
+![npm version](https://img.shields.io/npm/v/use-re-hooks)
+![npm downloads](https://img.shields.io/npm/dm/use-re-hooks)
+
 Potentially "Useful React hooks"!
 
 Playground demos:
