@@ -50,5 +50,8 @@ jobs:
         uses: codecov/codecov-action@v5
         with:
           use_oidc: true
+          slug: shaneiadt/re-hooks
           files: ./coverage/lcov.info
-          fail_ci_if_error: false
+          disable_search: true
+          verbose: true
+          fail_ci_if_error: true
