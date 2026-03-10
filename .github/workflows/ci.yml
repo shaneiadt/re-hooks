@@ -46,13 +46,3 @@ jobs:
 
       - name: Build
         run: bun run build
-
-      - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v5
-        with:
-          use_oidc: true
-          use_legacy_upload_endpoint: true
-          files: ./coverage/lcov.info
-          disable_search: true
-          verbose: true
-          fail_ci_if_error: true
