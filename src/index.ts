@@ -13,3 +13,4 @@ export * from "./useNotification/useNotification";
 export * from "./useMeasurePerformance/useMeasurePerformance";
 export * from "./useGeolocation/useGeolocation";
 export * from "./useIsVisible/useIsVisible";
+export * from "./useTimeout/useTimeout";

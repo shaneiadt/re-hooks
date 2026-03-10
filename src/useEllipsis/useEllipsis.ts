@@ -20,6 +20,22 @@ export interface UseEllipsisProps {
   position?: EllipsisPosition;
 }
 
+/**
+ * Creates configurable ellipsis helpers for shortening text.
+ *
+ * Supports truncating from the start, middle, or end and allows per-call
+ * overrides in addition to the initial defaults.
+ *
+ * @param props - Default ellipsis configuration
+ * @returns The ellipsis formatter and a setter for updating defaults
+ *
+ * @example
+ * ```ts
+ * const { ellipsis } = useEllipsis({ length: 10 });
+ *
+ * ellipsis("a very long string");
+ * ```
+ */
 export const useEllipsis = ({
   length,
   count = 3,

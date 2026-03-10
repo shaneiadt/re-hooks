@@ -20,6 +20,22 @@ enum Labels {
   end = "end",
 }
 
+/**
+ * Measures how long a set of synchronous functions take to execute.
+ *
+ * Calling `measure` runs each entry, records browser performance marks, and
+ * stores the measured durations in state.
+ *
+ * @param props - Entries to measure
+ * @returns Measurement results and a trigger function
+ *
+ * @example
+ * ```ts
+ * const { results, measure } = useMeasurePerformance({
+ *   entries: [{ name: "task", func: () => heavyWork() }],
+ * });
+ * ```
+ */
 export const useMeasurePerformance = ({
   entries,
 }: Readonly<UseMeasurePerformanceProps>): {

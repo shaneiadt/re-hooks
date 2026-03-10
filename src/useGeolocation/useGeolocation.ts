@@ -30,6 +30,23 @@ export interface UseGelocationProps {
   error?: (err: GeolocationPositionError) => void;
 }
 
+/**
+ * Requests the user's current geolocation and tracks request status.
+ *
+ * The hook invokes the provided callbacks for success and error responses from
+ * the Geolocation API.
+ *
+ * @param props - Success and optional error callbacks
+ * @returns The current geolocation request status
+ *
+ * @example
+ * ```ts
+ * const { STATUS } = useGeolocation({
+ *   success: (position) => console.log(position.coords.latitude),
+ *   error: (err) => console.error(err.message),
+ * });
+ * ```
+ */
 export const useGeolocation = ({
   success,
   error,
