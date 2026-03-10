@@ -5,6 +5,19 @@ export interface UseRandomNumberProps {
   max: number;
 }
 
+/**
+ * Generates a random integer within the provided inclusive range.
+ *
+ * A new number is generated whenever `min` or `max` change.
+ *
+ * @param props - Inclusive minimum and maximum values
+ * @returns The generated random value
+ *
+ * @example
+ * ```ts
+ * const { value } = useRandomNumber({ min: 1, max: 6 });
+ * ```
+ */
 export const useRandomNumber = ({
   min,
   max,

@@ -18,6 +18,22 @@ const fnToworkerURL = (fn: Function) => {
   return URL.createObjectURL(blob);
 };
 
+/**
+ * Creates a Web Worker from a function and exposes helpers for posting data
+ * and replacing the worker action.
+ *
+ * @param action - Function used to bootstrap the worker
+ * @returns Worker messaging helpers, latest result, and worker status
+ *
+ * @example
+ * ```ts
+ * const { postMessage, result, status } = useWebWorker<number, number>(() => {
+ *   self.onmessage = (event) => {
+ *     self.postMessage(event.data * 2);
+ *   };
+ * });
+ * ```
+ */
 export const useWebWorker = <T, K>(
   action: () => void,
 ): {

@@ -1,3 +1,16 @@
+/**
+ * Provides helpers for generating and transforming colors.
+ *
+ * @returns Color utilities for random generation and RGB/hex conversion
+ *
+ * @example
+ * ```ts
+ * const { getRandomColor, fadeColor } = useColor();
+ *
+ * const color = getRandomColor();
+ * const lighter = fadeColor(color, 16);
+ * ```
+ */
 export const useColor = () => {
   const getRandomColor = () => {
     return (

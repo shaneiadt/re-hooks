@@ -25,6 +25,21 @@ export interface TextItem {
   text: string;
 }
 
+/**
+ * Provides a helper for writing text or image data to the system clipboard.
+ *
+ * Image items are fetched first and then written as blobs. Text items are
+ * written as plain text blobs.
+ *
+ * @returns Clipboard actions
+ *
+ * @example
+ * ```ts
+ * const { addToClipboard } = useClipboard();
+ *
+ * await addToClipboard({ text: "Copied text" });
+ * ```
+ */
 export const useClipboard = () => {
   const addToClipboard = async (item: ImageItem | TextItem) => {
     try {

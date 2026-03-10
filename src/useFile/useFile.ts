@@ -1,5 +1,25 @@
 import { RefObject, useCallback, useEffect } from "react";
 
+/**
+ * Attaches a change listener to a file input and reads the first selected file
+ * as text.
+ *
+ * When a file is selected, the hook calls the optional callback with the
+ * file contents.
+ *
+ * @param ref - Ref pointing to an `<input type="file">` element
+ * @param callback - Optional callback invoked with the selected file text
+ * @returns An empty object
+ *
+ * @example
+ * ```tsx
+ * const inputRef = useRef<HTMLInputElement>(null);
+ *
+ * useFile(inputRef, (text) => {
+ *   console.log(text);
+ * });
+ * ```
+ */
 export const useFile = (
   ref: RefObject<HTMLInputElement>,
   callback?: (text: string) => void,

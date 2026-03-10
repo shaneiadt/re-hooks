@@ -15,6 +15,19 @@ export interface NotificationData {
   icon?: string;
 }
 
+/**
+ * Requests browser notification permission and exposes a helper to send
+ * notifications once permission is available.
+ *
+ * @returns Notification status and a function for dispatching notifications
+ *
+ * @example
+ * ```ts
+ * const { status, notify } = useNotification();
+ *
+ * notify({ title: "Saved", body: "Your changes were saved." });
+ * ```
+ */
 export const useNotification = () => {
   const [status, setStatus] = useState<NOTIFICATION_STATUS>(
     NOTIFICATION_STATUS.IDLE,
