@@ -1,10 +1,12 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import readAsText from "./readAsText";
 
+const NativeFileReader = globalThis.FileReader;
+
 class FileReaderMock {
-  DONE = FileReader.DONE;
-  EMPTY = FileReader.EMPTY;
-  LOADING = FileReader.LOADING;
+  DONE = NativeFileReader.DONE;
+  EMPTY = NativeFileReader.EMPTY;
+  LOADING = NativeFileReader.LOADING;
   readyState: 0 | 1 | 2 = 0;
   error: FileReader["error"] = null;
   result: FileReader["result"] = null;
@@ -27,8 +29,19 @@ class FileReaderMock {
 
 describe("readAsText()", () => {
   const file = new File([new ArrayBuffer(1)], "file.jpg");
-  const fileReader = new FileReaderMock();
-  vi.spyOn(globalThis, "FileReader").mockImplementation(() => fileReader);
+  let fileReader: FileReaderMock;
+
+  beforeEach(() => {
+    fileReader = new FileReaderMock();
+    vi.stubGlobal(
+      "FileReader",
+      class {
+        constructor() {
+          return fileReader;
+        }
+      } as unknown as typeof FileReader,
+    );
+  });
 
   beforeEach(() => {
     vi.clearAllMocks();
