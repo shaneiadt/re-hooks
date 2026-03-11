@@ -42,7 +42,7 @@ describe(useGeolocation, () => {
   });
 
   it("should render an SUCCESS status", () => {
-    geolocation.getCurrentPosition.mockImplementation((success, _rejected) =>
+    geolocation.getCurrentPosition.mockImplementation((success) =>
       success({
         coords: {},
         timestamp: "",

@@ -5,8 +5,8 @@ import { describe, expect, it } from "vitest";
 
 describe(useCompose, () => {
   it("should render the correct number result", () => {
-    const fn1 = (arg: any) => 4 + arg;
-    const fn2 = (arg: any) => 2 + arg;
+    const fn1 = (arg: number | null) => 4 + Number(arg);
+    const fn2 = (arg: number | null) => 2 + Number(arg);
     const fn3 = () => 10;
 
     let initialProps = [fn1, fn2, fn3];
@@ -26,8 +26,8 @@ describe(useCompose, () => {
 
   it("should render the correct string result", () => {
     const fn3 = () => "first";
-    const fn2 = (arg: any) => arg + " second";
-    const fn1 = (arg: any) => arg + " third";
+    const fn2 = (arg: string | null) => arg + " second";
+    const fn1 = (arg: string | null) => arg + " third";
 
     let initialProps = [fn1, fn2, fn3];
 
