@@ -28,13 +28,14 @@
   "scripts": {
     "build": "tsup",
     "dev": "tsup --watch",
+    "lint": "bunx eslint .",
     "playground:dev": "bun run build && bun run --cwd playground dev",
     "playground:build": "bun run build && bun run --cwd playground build",
     "test": "vitest run",
     "test:watch": "vitest",
     "typecheck": "tsc --noEmit",
     "release": "bun run release:dry-run",
-    "release:check": "bun run typecheck && bun run test && bun run build",
+    "release:check": "bun run lint && bun run typecheck && bun run test && bun run build",
     "release:dry-run": "bun run release:check && npm pack --dry-run",
     "prepublishOnly": "bun run release:check",
     "test:coverage": "vitest run --coverage --coverage.reporter=lcov --coverage.reporter=text-summary --coverage.include='src/**/*.ts' --coverage.exclude='src/**/test/**'"
@@ -43,16 +44,22 @@
     "react": "^18 || ^19"
   },
   "devDependencies": {
+    "@eslint/js": "^10.0.1",
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.0",
     "@types/react": "^19.1.13",
     "@types/react-dom": "^19.1.9",
     "@vitest/coverage-v8": "^4.0.18",
+    "eslint": "^9.7.0",
+    "eslint-plugin-react": "^7.37.5",
+    "globals": "^17.4.0",
     "jsdom": "^28.1.0",
     "react-dom": "^19.2.0",
     "tsup": "^8.5.0",
     "typescript": "^5.9.2",
-    "vitest": "^4.0.18"
+    "typescript-eslint": "^8.57.0",
+    "vitest": "^4.0.18",
+    "jiti": "^2.6.1"
   },
   "keywords": [
     "react",

@@ -10,7 +10,7 @@ export enum STATUS {
   PROCESSING = "PROCESSING",
 }
 
-const fnToworkerURL = (fn: Function) => {
+const fnToworkerURL = (fn: () => void) => {
   const blob = new Blob([`(${fn.toString()})()`], {
     type: "text/javascript",
   });

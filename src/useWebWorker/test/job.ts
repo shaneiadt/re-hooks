@@ -12,7 +12,7 @@ export const job1: Work = () =>
       const nbr = e.data;
       let n1 = 0;
       let n2 = 1;
-      let somme = 0;
+      let somme;
 
       for (let i = 2; i <= nbr; i++) {
         somme = n1 + n2;
@@ -33,6 +33,6 @@ export const job1: Work = () =>
 export const job2: Work = () =>
   // your function must define an onmessage function and if you wish to interact with the data an Event object is passed in as an argument
 
-  (onmessage = (_e) => {
+  (onmessage = () => {
     postMessage("BOOM");
   });

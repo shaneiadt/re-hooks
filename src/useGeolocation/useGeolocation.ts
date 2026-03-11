@@ -26,7 +26,7 @@ export interface GeoPosition {
 }
 
 export interface UseGelocationProps {
-  success: (pos: any) => void;
+  success: (pos: GeoPosition) => void;
   error?: (err: GeolocationPositionError) => void;
 }
 

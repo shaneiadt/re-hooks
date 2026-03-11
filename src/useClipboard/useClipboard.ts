@@ -8,14 +8,12 @@ interface ClipboardItemData {
   [mimeType: string]: Blob | string | Promise<Blob | string>;
 }
 
-declare var ClipboardItem: {
+declare const ClipboardItem: {
   prototype: ClipboardItem;
   new (itemData: ClipboardItemData): ClipboardItem;
 };
 
-let anyNavigator: any;
-
-anyNavigator = globalThis.navigator;
+const anyNavigator: Navigator = globalThis.navigator;
 
 export interface ImageItem {
   url: string;
